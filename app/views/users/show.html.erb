@@ -1,0 +1,7 @@
+<h1>Users#show</h1>
+<p>Find me in app/views/users/show.html.erb</p>
+
+<% provide(:title, @user.name) %>
+<h1>My page (<%= @user.name %>)</h1>
+<br>
+<%= link_to "ログアウト", destroy_user_session_path, method: :delete %> 

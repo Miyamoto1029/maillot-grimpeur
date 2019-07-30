@@ -1,0 +1,23 @@
+<%# <%= link_to "スレッド一覧に戻る", "/boards" %>
+<%# ↑ resourcesじゃない書き方 %>
+<%= link_to "スレッド一覧に戻る", boards_path %>
+<hr>
+<h1>boards#new</h1>
+<%# <%= form_tag "/boards", method:  :post do %>
+<%# ↑ resourcesじゃない書き方 %>
+
+<%# <%= form_tag boards_path, method: :post do %> 
+    <%# タイトル：<%= text_field_tag :title %>
+    <%# 作成者名：<%= text_field_tag :editor %>
+    <%# <%= submit_tag %>
+<%# ↑ さらに変更　↓ 入れ子にする為、railsの仕様のフォーマットに書き換える %>
+<% if @board.errors.any? %>
+    <%= @board.errors.full_messages %>
+<% end %>
+<%# ↑ エラーメッセージを表示する記述 %>
+<%= form_for @board do |f| %>
+    タイトル：<%= f.text_field :title %><br>
+    作成者名：<%= f.text_field :editor %><br>
+    <%= f.submit %>
+
+<% end %>

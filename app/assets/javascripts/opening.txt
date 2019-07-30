@@ -1,0 +1,6 @@
+op_txt01=welcome to Web Site . 
+&op_txt02=NO BIKE NO LIFE.
+&op_txt03=http://www.ddnj.com/
+&op_txt04=Let's Hill Climb !
+&op_txt05=Click to start !!
+&Goto=http://www.ddnj.com/

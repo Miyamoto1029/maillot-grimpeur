@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MaillotGrimpeur</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  </head>
+
+  <body>
+
+<style>
+
+header {
+	height: 120px; /*ヘッダーの高さ*/
+	width: 100%; /*ヘッダーの横幅*/
+	background-color: rgb(75 75 75); /*ヘッダーの背景色*/
+  color: white; /*ヘッダーの文字の色*/
+  position: relative; /*必ず必要*/
+  z-index: 2;
+}
+ 
+.p_text {
+  text-align: center;
+  font-size: 30px;
+  font-family: impact;
+}
+ 
+nav {
+  padding-right: 30px;
+}
+ 
+nav li {
+  width: 140px;
+  text-align: center;
+  background-color: #222;
+  float: center;
+  margin-right: 10px;
+}
+ 
+nav li a {
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  padding: 1px;
+}
+
+footer {
+  height: 100px; /*ヘッダーの高さ*/
+  width: 100%; /*ヘッダーの横幅*/
+  text-align: center;  
+  line-height: 50px;
+	background-color: rgb(75 75 75); /*ヘッダーの背景色*/
+	color: white; /*ヘッダーの文字の色*/
+}
+
+hr {
+  border-top: 1px solid gray;
+  border-bottom: 1px solid #71ff00;
+}
+hr:after {
+  content: '';
+  display: block;
+  margin-top: 1px;
+  border-top: 1px solid #71ff00;
+  border-bottom: 1px solid gray;
+}
+
+/* 重ねるボックスの設定 */
+.layer-in{
+  /* ボックス配置指定 */
+  position: absolute;
+  top: 1px;
+  left: 5px;
+}
+/* 基本設定 */
+.layer-img{
+  width: 350px;
+  height: 113px;
+}
+
+
+
+
+</style>
+  
+<header>
+  <div class=p_text>Welcome!
+    <% if user_signed_in? %>
+      <strong><%= current_user.email %></strong>
+          <%= link_to "settings", edit_user_registration_path %>
+          <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+    <% end %>
+  </div>
+   <nav>
+    <ul class="nav navbar-nav navbar-right">
+      <li><%= link_to "sign in", new_user_session_path %></li>
+      <li><%= link_to "sign up", new_user_registration_path %></li>
+      <li><%= link_to "TOP", root_path  %></li>
+    </ul>
+  </nav>
+  <div class="layer-in">
+    <img src="<%= asset_path "title.jpg" %>" alt="" class="layer-img">
+  </div>
+</header>
+    <hr>
+
+    <%= yield %>
+    <footer>Copyright © 2019 maiilot-grimpeur.com . All Rights Reserved.</footer>
+  </body>
+</html>

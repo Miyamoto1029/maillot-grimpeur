@@ -1,0 +1,25 @@
+ja:
+  activerecord:
+    models:
+      board: ボード  #g
+      comment: コメント  #g
+      user: ユーザー  #g
+
+    attributes:
+      board:
+        comments: コメント  #g
+        editor: 編集者  #g
+        title: タイトル  #g
+
+      comment:
+        board: :activerecord.models.board  #g
+        content: コンテンツ  #g
+        name: 名  #g
+
+      user:
+        admin_flg: 管理者フラグ  #g
+        email: Eメール  #g
+        encrypted_password: 暗号化パスワード  #g
+        remember_created_at: で作成したことを忘れないでください  #g
+        reset_password_sent_at: に送信されたパスワードをリセットする  #g
+        reset_password_token: パスワードトークンをリセットする  #g

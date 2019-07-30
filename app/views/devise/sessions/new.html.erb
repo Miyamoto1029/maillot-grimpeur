@@ -1,0 +1,68 @@
+<style>
+  video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 1;
+    }
+
+.container {
+    position: relative; /*必ず必要*/
+    z-index: 2; /*必ず必要*/
+    text-align:center;
+    width:50%;
+    padding:20px;
+    margin: 0 auto;
+    margin-top: 150px;
+    background-color:  rgb(75 75 75);
+    color: black;
+    }
+</style>
+
+<%= video_tag 'test_1', width:"100%", autoplay: true, loop: true, muted: true %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4">
+    <%# ↓ここから %>
+      <h2>Log in</h2>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          </div>
+          <br>
+          <div class="field">
+            <%= f.label :password %><br />
+            <%= f.password_field :password, autocomplete: "current-password" %>
+          </div>
+
+          <% if devise_mapping.rememberable? -%>
+            <div class="field">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </div>
+          <% end -%>
+
+          <div class="actions">
+            <%= f.submit "Log in" %>
+          </div>
+        <% end %>
+
+        <%= render "devise/shared/links" %>
+        <%# ↑ここまでがでdeviseのview %>
+      </div>
+    <div class="col-lg-4"></div>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

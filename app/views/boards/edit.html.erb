@@ -1,0 +1,23 @@
+<%# <%= link_to @board.title, "/boards/#{@board.id}" %>
+<%# ↑ resourcesじゃない書き方 %>
+<%= link_to @board.title, board_path(@board) %>
+<hr>
+
+<% if @board.errors.any? %>
+    <%= @board.errors.full_messages %>
+<% end %>
+<%# ↑ エラーメッセージを表示する %>
+
+<h1>Boards#edit</h1>
+<%# <%= form_tag "/boards/#{@board.id}", method: :put do %>
+<%# ↑ resourcesじゃない書き方 %>
+<%# <%= form_tag board_path(@board), method: :put do %>
+    <%# タイトル：<%= text_field_tag :title, @board.title %>
+    <%# 作成者名：<%= text_field_tag :editor, @board.editor %>
+    <%# <%= submit_tag %>
+<%# ↑ 入れ子構造にする ↓ railsのフォーマットに書き換える為変更 %>
+<%= form_for @board do |f| %>
+タイトル：<%= f.text_field :title %><br>
+作成者名：<%= f.text_field :editor %><br>
+<%= f.submit %>
+<% end %>

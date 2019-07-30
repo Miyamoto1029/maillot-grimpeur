@@ -1,0 +1,30 @@
+<%# <%= link_to "スレッド一覧に戻る", "/boards" %>
+<%# ↑ resourcesじゃない書き方 %>
+<%= link_to "スレッド一覧に戻る", boards_path %>
+<hr>
+<h1><%= @board.title %></h1>
+<%# <%= link_to "タイトルを編集する", "/boards/#{@board.id}/edit" %>
+<%# <%= link_to "削除する", "/boards/#{@board.id}", method: :delete, data: { confirm: "本当に削除しますか？" } %>
+<%# ↑ resourcesじゃない書き方 %>
+<%= link_to "タイトルを編集する", edit_board_path(@board) %>
+<%= link_to "削除する", board_path(@board), method: :delete, data: {confirm: "本当に削除しますか？"} %>
+<hr>
+
+<div class="comments">
+    <% @board.comments.each_with_index do |comment, index| %>
+        <%= index + 1 %>:
+        <%= comment.name %>:
+        <%= comment.created_at.strftime("%Y/%m/%d %H:%M:%S") %>:
+        <%= link_to "削除する", board_comment_path(@board, comment), method: :delete, data: { confirm: "本当に削除しますか？" } %><br>
+            <div class="commentbody">
+                <%= comment.content %>
+            </div>
+    <% end %>
+</div>
+<hr>
+
+<%= form_for @comment, url: board_comments_path(@board, @comment) do |f| %>
+名前：  <%= f.text_field :name %><br>
+コメント：<%= f.text_area :content %><br>
+<%= f.submit %>
+<% end %>

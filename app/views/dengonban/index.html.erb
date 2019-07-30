@@ -1,0 +1,112 @@
+<style>
+
+h1.title{
+    font-size: 80pt;
+    color: white;
+    text-align: center;
+    font-family: 'arial black',serif;
+}
+
+.title_p{
+    font-size: 30px;
+    color: white;
+    text-align: center;
+}
+
+.form{
+    marigin: 50px 0px;
+}
+
+.form_td{
+    color: white;
+    font-size: 23px;
+}
+
+.form tr {
+    padding: 10px 10px;
+    font-size: 19px;
+}
+
+input{
+    color: black;
+}
+
+
+.dengon th{
+    background-color: gray;
+    color: white;
+    font-size: 14pt;
+    padding: 2px;
+}
+
+.dengon tr {
+    background-color: white;
+    color: black;
+    padding: 10px 5px;
+}
+
+td.msg{
+    font-size:12pt;
+}
+
+td.name{
+    font-size:12pt;
+}
+
+td.mail{
+    font-size:12pt;
+}
+
+td.time{
+    font-size:12pt;
+}
+
+</style>
+
+
+<div class="container">
+    <h1 class="title">THE 伝言板</h1>
+    <p style="color: white;">本日の日付：<%= Time.zone.now.strftime("%Y/%m/%d") %></p>
+    <p class="title_p">「〇〇時に行きます！」「挑戦者募集！」等 ヒルクライマー募集にお使い下さい。</p>
+    <p class="title_p">※メッセージは24時間毎に消去されます※</p>
+    <br>
+    <table class="form">
+        <%= form_tag(controller: "dengonban", action: "index") do %>
+        <tr>
+            <td class="form_td">ニックネーム　:　</td>
+            <td><%= text_field_tag("name") %></td>
+        </tr>
+        <tr>
+            <td class="form_td">タイトル　:</td>
+            <td><%= text_field_tag("mail") %></td>
+        </tr>\
+        <tr>   
+            <td class="form_td">メッセージ　:</td>
+            <td><%= text_area_tag("msg", '', size: "50x3") %></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><%= submit_tag("送信") %></td>
+        </tr>
+        <% end %>
+    </table>
+</div>
+<br>
+<table class="dengon" style="margin-left: auto; margin-right: auto;">
+    <tr>
+        <th style="width:250px;">投稿時間</th>
+        <th style="width: 270px;">投稿者</th>
+        <th style="width:280px;">タイトル</th>
+        <th style="width: 1000px;">メッセージ</th>
+    </tr>
+    <% @dengon_data.each do |key,obj| %>
+    <tr>
+        <td class="time"><%= Time.at(key.to_i) %></td>
+        <td class="name"><%= obj['name'] %></td>
+        <td class="mail"><%= obj['mail'] %></td>
+        <td class="msg"><%= obj['msg'] %></td>
+       
+    </tr>
+    <% end %>
+</table>
+<br>
